@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>งานพอดีตัว</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAF7F2;--card:#fff;--tx:#1F2933;--mu:#52606D;--pr:#0B6E6E;--onpr:#fff;--ac:#F2A93B;--onac:#1F2933;--ok:#2E7D32;--okbg:#E6F4EA;--bd:#D9D2C5;--wbg:#FFF4DC;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14181B;--card:#1E2429;--tx:#F1F3F5;--mu:#AEB8C2;--pr:#4FB3B3;--onpr:#06282A;--ok:#7BCB84;--okbg:#1C3320;--bd:#36404A;--wbg:#3A2F14;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14181B;--card:#1E2429;--tx:#F1F3F5;--mu:#AEB8C2;--pr:#4FB3B3;--onpr:#06282A;--ok:#7BCB84;--okbg:#1C3320;--bd:#36404A;--wbg:#3A2F14;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:"Noto Sans Thai","Sarabun",system-ui,sans-serif;font-size:20px;line-height:1.6}
+.w{max-width:560px;margin:0 auto;padding:16px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+.logo{font-weight:700;font-size:24px;color:var(--pr);background:none;border:0;padding:8px 0;cursor:pointer;font-family:inherit}
+.tag{font-size:16px;background:var(--wbg);border-radius:999px;padding:2px 12px}
+h1{font-size:30px;line-height:1.35;margin:8px 0}
+h2{font-size:24px;margin:4px 0}
+.mu{color:var(--mu);margin:4px 0 12px}
+.sm{font-size:17px}
+.btn{display:block;width:100%;min-height:64px;padding:12px 18px;border:0;border-radius:16px;font-family:inherit;font-weight:700;font-size:22px;background:var(--pr);color:var(--onpr);cursor:pointer;margin:12px 0}
+.btn.s{background:transparent;color:var(--pr);border:2px solid var(--pr)}
+.btn.a{background:var(--ac);color:var(--onac)}
+.lnk{background:none;border:0;color:var(--pr);font-family:inherit;font-size:20px;text-decoration:underline;padding:12px 0;cursor:pointer}
+.btn:focus-visible,.opt:focus-visible,.lnk:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opt{min-height:116px;border:3px solid var(--bd);border-radius:16px;background:var(--card);color:var(--tx);font-family:inherit;font-size:20px;font-weight:700;cursor:pointer;padding:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.opt .i{font-size:36px;line-height:1}
+.opt[aria-pressed="true"]{border-color:var(--pr);background:var(--okbg)}
+.card{background:var(--card);border:2px solid var(--bd);border-radius:16px;padding:16px;margin:14px 0}
+.card h2{margin-bottom:0}
+.row{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.pay{font-weight:700;font-size:24px}
+.badge{display:inline-block;background:var(--okbg);color:var(--ok);font-weight:700;border-radius:999px;padding:2px 14px;font-size:18px}
+ul.ck{list-style:none;padding:0;margin:10px 0}
+ul.ck li{padding:2px 0}
+label{display:block;font-weight:700;margin:14px 0 4px}
+input,select{width:100%;min-height:56px;font-family:inherit;font-size:20px;padding:8px 12px;border:2px solid var(--bd);border-radius:12px;background:var(--card);color:var(--tx)}
+.chk{display:flex;gap:12px;align-items:center;font-weight:400;min-height:48px}
+.chk input{width:28px;min-height:28px;height:28px}
+.err{color:#B42318;font-weight:700;min-height:1.6em}
+:root[data-theme="dark"] .err{color:#FF8A80}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .err{color:#FF8A80}}
+.ok{background:var(--okbg);border-radius:16px;padding:16px;text-align:center}
+</style>
+</head>
+<body>
+<div class="w">
+  <div class="top"><button class="logo" onclick="go('home')">งานพอดีตัว</button><span class="tag">ต้นแบบ ข้อมูลตัวอย่าง</span></div>
+  <main id="m"></main>
+  <p class="mu sm" style="text-align:center"><button class="lnk sm" onclick="reset()">ล้างข้อมูลตัวอย่าง</button></p>
+</div>
+<script>
+var KEY='ngan-pod-tua-v1';
+var SEED=[
+ {id:'a1',title:'คัดแยกเอกสาร',place:'ร้านหนังสือใกล้บ้าน',km:1.2,hrs:3,pay:400,posture:'sit',lift:'none',light:'good',brk:1,small:false,fine:false,simple:true,verified:true},
+ {id:'a2',title:'นับสต็อกแบบนั่งทำ',place:'ร้านขายของชำ',km:0.8,hrs:2,pay:300,posture:'sit',lift:'none',light:'good',brk:1,small:true,fine:false,simple:true,verified:true},
+ {id:'a3',title:'โทรยืนยันนัดลูกค้า',place:'คลินิกทันตกรรม',km:2,hrs:3,pay:350,posture:'sit',lift:'none',light:'good',brk:1,small:false,fine:false,simple:false,verified:true},
+ {id:'a4',title:'แพ็กและห่อของขวัญ',place:'ร้านของที่ระลึก',km:1.5,hrs:3,pay:380,posture:'sit',lift:'light',light:'good',brk:1,small:false,fine:true,simple:true,verified:true},
+ {id:'a5',title:'เฝ้าร้านช่วงบ่าย',place:'ร้านซักรีด',km:2.5,hrs:3,pay:320,posture:'stand',lift:'none',light:'good',brk:2,small:false,fine:false,simple:true,verified:true},
+ {id:'a6',title:'ยกลังสินค้าขึ้นชั้น',place:'ร้านวัสดุก่อสร้าง',km:3.5,hrs:4,pay:500,posture:'stand',lift:'heavy',light:'dim',brk:2,small:false,fine:false,simple:true,verified:true}
+];
+var LIM=[
+ {id:'stand',t:'ยืนนานไม่ได้',i:'🧍',ok:function(j){return j.posture==='sit'}},
+ {id:'lift',t:'ยกของหนักไม่ได้',i:'📦',ok:function(j){return j.lift!=='heavy'}},
+ {id:'read',t:'อ่านตัวเล็กไม่สะดวก',i:'👓',ok:function(j){return !j.small}},
+ {id:'walk',t:'เดินไกลไม่ได้',i:'🚶',ok:function(j){return j.posture!=='walk'&&j.km<=2}},
+ {id:'hand',t:'มือไม่ค่อยคล่อง',i:'🖐️',ok:function(j){return !j.fine}},
+ {id:'mem',t:'จำขั้นตอนยาก',i:'🧠',ok:function(j){return j.simple}}
+];
+function fresh(){return{jobs:JSON.parse(JSON.stringify(SEED)),apps:[],limits:[],name:''}}
+function load(){try{var r=localStorage.getItem(KEY);if(r)return JSON.parse(r)}catch(e){}return fresh()}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+var S=load(),V='home',CUR=null,CF=false,ERR='';
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function $(id){return document.getElementById(id)}
+function job(id){return S.jobs.filter(function(j){return j.id===id})[0]}
+function go(v,c){V=v;CUR=c||null;CF=false;ERR='';draw();window.scrollTo(0,0)}
+function reset(){S=fresh();save();go('home')}
+function fit(j){
+ var p=j.posture==='sit'?[1,'นั่งทำได้']:[0,j.posture==='stand'?'ต้องยืนทำ':'ต้องเดินไปมา'];
+ var l=j.lift==='none'?[1,'ไม่ต้องยกของ']:j.lift==='light'?[1,'ยกไม่เกิน 5 กก.']:[0,'ต้องยกของหนัก'];
+ var g=j.light==='good'?[1,'แสงสว่างพอ']:[0,'แสงค่อนข้างมืด'];
+ var b=[1,'พักทุก '+j.brk+' ชั่วโมง'];
+ return '<ul class="ck">'+[p,l,g,b].map(function(x){return '<li>'+(x[0]?'✅':'⚠️')+' '+x[1]+'</li>'}).join('')+'</ul>';
+}
+function tog(id){var i=S.limits.indexOf(id);if(i<0)S.limits.push(id);else S.limits.splice(i,1);save();draw()}
+function pick(){var f=S.jobs.filter(function(j){return S.limits.every(function(id){return LIM.filter(function(x){return x.id===id})[0].ok(j)})});return f}
+function ask(){var n=$('nm').value.trim();if(!n){ERR='กรุณาใส่ชื่อของคุณ';draw();return}S.name=n;save();CF=true;ERR='';draw()}
+function take(){S.apps.push({jid:CUR,name:S.name,st:'รอยืนยัน'});save();go('done',CUR)}
+function okApp(i){S.apps[i].st='ยืนยันแล้ว';save();draw()}
+function post(){
+ var t=$('t').value.trim(),pay=parseInt($('p').value,10);
+ if(!t||!pay){ERR='กรุณาใส่ชื่องานและค่าจ้าง';draw();return}
+ S.jobs.unshift({id:'n'+Date.now(),title:t,place:$('pl').value.trim()||'ร้านของฉัน',km:1,hrs:parseInt($('h').value,10),pay:pay,posture:$('po').value,lift:$('li').value,light:$('lg').value,brk:parseInt($('b').value,10),small:$('sm').checked,fine:$('fn').checked,simple:!$('cx').checked,verified:false});
+ save();go('emp');
+}
+function opt(v,arr){return arr.map(function(a){return '<option value="'+a[0]+'">'+a[1]+'</option>'}).join('')}
+function draw(){
+ var h='',err='<p class="err" role="alert">'+ERR+'</p>';
+ if(V==='home'){
+  h='<h1>งานเบา ๆ ที่พอดีกับร่างกาย</h1><p class="mu">เลือกงานที่ไหว ได้ค่าจ้างเต็ม ผู้สูงอายุใช้ฟรี</p>'+
+   '<button class="btn" onclick="go(\'limits\')">👵 ฉันอยากหางานเบา ๆ</button>'+
+   '<button class="btn s" onclick="go(\'emp\')">🏪 ฉันเป็นผู้ว่าจ้าง อยากลงงาน</button>';
+ }else if(V==='limits'){
+  h='<h1>อะไรที่ทำไม่ค่อยไหว</h1><p class="mu">เลือกได้หลายข้อ เราจะหางานที่เหมาะกับคุณ ใช้เวลาไม่ถึง 1 นาที</p><div class="grid">'+
+   LIM.map(function(x){return '<button class="opt" aria-pressed="'+(S.limits.indexOf(x.id)>=0)+'" onclick="tog(\''+x.id+'\')"><span class="i">'+x.i+'</span>'+x.t+'</button>'}).join('')+
+   '</div><button class="btn" onclick="go(\'list\')">ดูงานที่เหมาะกับฉัน</button><button class="lnk" onclick="S.limits=[];save();go(\'list\')">ข้ามไปก่อน</button>';
+ }else if(V==='list'){
+  var f=pick(),hid=S.jobs.length-f.length;
+  h='<h1>งานที่เหมาะกับคุณวันนี้</h1>'+(S.limits.length?'<p class="mu">เงื่อนไขของคุณ: '+S.limits.map(function(id){return LIM.filter(function(x){return x.id===id})[0].t}).join(', ')+'</p>':'');
+  if(!f.length)h+='<div class="card"><p>ยังไม่มีงานที่เหมาะกับเงื่อนไขนี้ ลองลดเงื่อนไขลงหรือกลับมาดูใหม่</p></div>';
+  h+=f.map(function(j){return '<div class="card"><h2>'+esc(j.title)+'</h2><div class="mu">'+esc(j.place)+' ห่าง '+j.km+' กม.</div><div class="row"><span>'+j.hrs+' ชั่วโมง</span><span class="pay">'+j.pay+' บาท</span></div>'+
+   (S.limits.length?'<span class="badge">พอดีตัว</span>':'')+fit(j)+'<button class="btn" onclick="go(\'detail\',\''+j.id+'\')">ดูรายละเอียด</button></div>'}).join('');
+  if(hid&&S.limits.length)h+='<p class="mu">ซ่อนไว้ '+hid+' งานที่ไม่เหมาะกับคุณ</p>';
+  h+='<button class="btn s" onclick="go(\'limits\')">แก้ข้อจำกัดของฉัน</button><button class="btn s" onclick="go(\'mine\')">งานที่ฉันรับ</button>';
+ }else if(V==='detail'){
+  var j=job(CUR);
+  h='<h1>'+esc(j.title)+'</h1><div class="mu">'+esc(j.place)+' ห่าง '+j.km+' กม.</div><div class="row"><span>'+j.hrs+' ชั่วโมง</span><span class="pay">'+j.pay+' บาท</span></div>'+
+   (j.verified?'<span class="badge">ผู้ว่าจ้างยืนยันตัวตนแล้ว</span>':'')+fit(j)+'<p class="mu sm">งานระยะสั้น มีประกันอุบัติเหตุระหว่างทำงาน (ตัวอย่างของต้นแบบ)</p>';
+  if(!CF){h+='<label for="nm">ชื่อของคุณ</label><input id="nm" value="'+esc(S.name)+'" autocomplete="name">'+err+'<button class="btn a" onclick="ask()">รับงานนี้</button><button class="btn s" onclick="go(\'list\')">ยังไม่รับ</button>'}
+  else{h+='<div class="card"><h2>ยืนยันรับงานนี้ใช่ไหม</h2><p class="mu">'+esc(S.name)+' รับงาน '+esc(j.title)+'</p><button class="btn" onclick="take()">ยืนยัน</button><button class="btn s" onclick="CF=false;draw()">ย้อนกลับ</button></div>'}
+ }else if(V==='done'){
+  var d=job(CUR);
+  h='<div class="ok"><h1>รับงานแล้ว</h1><p>'+esc(d.title)+' ที่ '+esc(d.place)+'</p><p>สถานะ: รอผู้ว่าจ้างยืนยัน</p></div><button class="btn" onclick="go(\'list\')">ดูงานอื่น</button><button class="btn s" onclick="go(\'mine\')">งานที่ฉันรับ</button>';
+ }else if(V==='mine'){
+  var m=S.apps.filter(function(a){return !S.name||a.name===S.name});
+  h='<h1>งานที่ฉันรับ</h1>'+(m.length?m.map(function(a){var jb=job(a.jid);return '<div class="card"><h2>'+esc(jb?jb.title:'')+'</h2><p class="mu">สถานะ: '+a.st+'</p></div>'}).join(''):'<p class="mu">ยังไม่มีงานที่รับ เริ่มจากดูงานที่เหมาะกับคุณ</p>')+'<button class="btn" onclick="go(\'list\')">ดูงานที่เหมาะกับฉัน</button>';
+ }else if(V==='emp'){
+  h='<h1>ผู้ว่าจ้าง</h1><p class="mu">ลงงานพร้อมสภาพงาน ระบบจะจับคู่กับผู้สูงอายุที่เหมาะให้</p><button class="btn a" onclick="go(\'post\')">ลงงานใหม่</button>'+
+   S.jobs.map(function(j){var ap=S.apps.map(function(a,i){return{a:a,i:i}}).filter(function(x){return x.a.jid===j.id});
+    return '<div class="card"><h2>'+esc(j.title)+'</h2><div class="mu">'+j.hrs+' ชั่วโมง, '+j.pay+' บาท</div>'+
+     (ap.length?ap.map(function(x){return '<div class="row"><span>'+esc(x.a.name)+' ('+x.a.st+')</span>'+(x.a.st==='รอยืนยัน'?'<button class="lnk" onclick="okApp('+x.i+')">ยืนยัน</button>':'')+'</div>'}).join(''):'<p class="mu sm">ยังไม่มีผู้รับงาน</p>')+'</div>'}).join('');
+ }else if(V==='post'){
+  h='<h1>ลงงานใหม่</h1><p class="mu">บอกสภาพงานให้ครบ ผู้สูงอายุจะเห็นเฉพาะงานที่เหมาะ</p><p class="mu sm">ผู้ว่าจ้างจริงต้องยืนยันตัวตนก่อนลงงาน (ต้นแบบยังไม่เปิดขั้นตอนนี้)</p>'+
+   '<label for="t">ชื่องาน</label><input id="t"><label for="pl">สถานที่</label><input id="pl"><label for="p">ค่าจ้าง (บาท)</label><input id="p" type="number" inputmode="numeric">'+
+   '<label for="h">เวลาทำงาน</label><select id="h">'+opt('',[[2,'2 ชั่วโมง'],[3,'3 ชั่วโมง'],[4,'4 ชั่วโมง']])+'</select>'+
+   '<label for="po">ลักษณะงาน</label><select id="po">'+opt('',[['sit','นั่งทำ'],['stand','ยืนทำ'],['walk','เดินไปมา']])+'</select>'+
+   '<label for="li">น้ำหนักที่ต้องยก</label><select id="li">'+opt('',[['none','ไม่ต้องยก'],['light','ไม่เกิน 5 กก.'],['heavy','เกิน 5 กก.']])+'</select>'+
+   '<label for="lg">แสงสว่าง</label><select id="lg">'+opt('',[['good','สว่างพอ'],['dim','ค่อนข้างมืด']])+'</select>'+
+   '<label for="b">ช่วงพัก</label><select id="b">'+opt('',[[1,'ทุก 1 ชั่วโมง'],[2,'ทุก 2 ชั่วโมง']])+'</select>'+
+   '<label class="chk"><input id="sm" type="checkbox"> ต้องอ่านตัวหนังสือเล็ก</label><label class="chk"><input id="fn" type="checkbox"> ต้องใช้มือละเอียด</label><label class="chk"><input id="cx" type="checkbox"> มีหลายขั้นตอนต้องจำ</label>'+
+   err+'<button class="btn a" onclick="post()">ลงงาน</button><button class="btn s" onclick="go(\'emp\')">ยกเลิก</button>';
+ }
+ $('m').innerHTML=h;
+}
+draw();
+</script>
+</body>
+</html>
